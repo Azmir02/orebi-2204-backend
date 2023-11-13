@@ -1,12 +1,13 @@
 const express = require('express');
-const _ = express.Router();
+const router = express.Router();
 const apiRoutes = require('./api');
 
 const api = process.env.BASE_URL;
 
-_.use(api, apiRoutes)
-
-_.use(api, (req, res) => res.send("No Api Found On This Router"))
+router.use(api, apiRoutes)
 
 
-module.exports = _;
+router.use(api, (req, res) => res.send("No Api Found On This Router"))
+
+
+module.exports = router;
