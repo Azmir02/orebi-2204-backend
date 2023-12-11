@@ -8,27 +8,27 @@ async function registrationController(req, res) {
         const { firstName, lastName, email, password, telephone, address, city, postCode, country, state } = req.body;
 
         if (!nameValidation(firstName)) {
-            return res.status(400).send({
-                error: "First Name Is Not Valid"
+            return res.status(400).json({
+                message: "First Name Is Not Valid"
             })
         }
         if (!nameValidation(lastName)) {
-            return res.status(400).send({
-                error: "Last Name Is Not Valid"
+            return res.status(400).json({
+                message: "Last Name Is Not Valid"
             })
         }
 
         if (!emailValidation(email)) {
-            return res.status(400).send({
-                error: "Please enter a valid email address"
+            return res.status(400).json({
+                message: "Please enter a valid email address"
             })
         }
 
         let existingMail = await User.find({ email })
 
         if (existingMail.length > 0) {
-            return res.status(400).send({
-                error: "Email Already Exists"
+            return res.status(400).json({
+                message: "Email Already Exists"
             })
         }
 
